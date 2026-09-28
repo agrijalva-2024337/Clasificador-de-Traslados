@@ -64,5 +64,5 @@ export default function CargarArchivos({onTypes, onBin}){
             </label>
         </div>
     </section>
-   )
+   );
 }
