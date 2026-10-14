@@ -257,51 +257,6 @@ tr.click { cursor: pointer; }
 tr.click:hover { background: #dcedf1; }
 .scroll { max-height: 500px; overflow: auto; margin-top: 12px; }
 
-.grafica {
-  background: #fff;
-  border: 1px solid #d3dce0;
-  border-radius: 10px;
-  padding: 16px;
-  margin: 0 0 16px;
-}
-
-.grafica h2 { margin: 0 0 10px; font-size: 16px; }
-
-.grafica-fila {
-  display: grid;
-  grid-template-columns: minmax(88px, 150px) 1fr auto;
-  gap: 8px;
-  align-items: center;
-  margin-top: 8px;
-  font-size: 13px;
-}
-
-.grafica-fila > span:first-child {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #3d4a52;
-}
-
-.grafica-pista {
-  height: 12px;
-  background: #eef2f4;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.grafica-relleno {
-  display: block;
-  height: 100%;
-  background: #1d7449;
-}
-
-.grafica-fila b {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
 /* Adaptativo */
 @media (max-width: 700px) {
   .app-container { flex-direction: column; }
@@ -604,19 +559,11 @@ tr.click:hover { background: #dcedf1; }
   text-align: left;
   font-weight: 650;
   width: auto;
+  color: var(--moss);
 }
 
-.corte-pinpad .namebtn::before,
-.corte-pinpad .card-btn::before {
-  content: "+";
-  display: inline-block;
-  width: 16px;
-  color: var(--muted);
-  font-weight: 500;
-}
-
-.corte-pinpad tr.open .namebtn::before,
-.corte-pinpad .card.open .card-btn::before { content: "–"; color: var(--moss); }
+.corte-pinpad tr.fila-tienda { cursor: pointer; }
+.corte-pinpad .card { cursor: pointer; }
 
 .corte-pinpad .cuando small { display: block; color: var(--muted); font-size: 12px; }
 
@@ -714,6 +661,80 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .card .ficha { margin: 12px 0 0; padding: 12px 0 0; border-left: 0; border-top: 1px solid var(--line); grid-template-columns: 1fr; }
 .corte-pinpad .vacio { padding: 18px 2px; font-size: 16px; }
 
+.corte-pinpad .volver {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0 0 14px;
+  color: var(--moss);
+  font-weight: 650;
+}
+
+.corte-pinpad .tienda-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.corte-pinpad .tienda-head h2 { margin: 0; font-size: 26px; }
+.corte-pinpad .tienda-code { margin: 4px 0 0; color: var(--muted); }
+
+.corte-pinpad .picos {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.corte-pinpad .picos h2 { margin: 0 0 4px; font-size: 16px; }
+.corte-pinpad .picos-meta { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
+.corte-pinpad .picos-leyenda { margin: 0 0 10px; max-width: 68ch; font-size: 14px; }
+.corte-pinpad .picos-clave { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+.corte-pinpad .picos-clave span { display: inline-flex; align-items: center; gap: 6px; }
+.corte-pinpad .muestra { width: 12px; height: 12px; border-radius: 2px; }
+.corte-pinpad .muestra.clara { background: #8fd0aa; }
+.corte-pinpad .muestra.oscura { background: #146c43; }
+.corte-pinpad .picos svg { width: 100%; height: auto; display: block; }
+.corte-pinpad .picos text { font-family: system-ui, sans-serif; }
+
+.corte-pinpad .picos-tabla-wrap {
+  max-height: 320px;
+  overflow: auto;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.corte-pinpad .picos table { min-width: 0; width: 100%; font-size: 14px; }
+.corte-pinpad .picos thead th { padding: 8px 10px; font-size: 12px; }
+.corte-pinpad .picos td { padding: 8px 10px; }
+.corte-pinpad .picos tr.pico td { background: #e7f6ec; font-weight: 650; }
+.corte-pinpad .pico-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #146c43;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+
+.corte-pinpad .pagina-tienda .ficha {
+  margin: 0;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--moss);
+  border-radius: 10px;
+}
+
+.corte-pinpad .pagina-tienda .estado-celda { min-width: 140px; }
+
 .corte-pinpad .footnote {
   margin: 28px 0 0;
   color: var(--muted);
@@ -727,6 +748,8 @@ tr.click:hover { background: #dcedf1; }
   .corte-pinpad .visibles { margin-left: 0; }
   .corte-pinpad .tabla-wrap { display: none; }
   .corte-pinpad .cards { display: flex; flex-direction: column; gap: 10px; }
+  .corte-pinpad .pagina-tienda .ficha { grid-template-columns: 1fr; }
+  .corte-pinpad .tienda-head { flex-direction: column; }
 }
 
 
@@ -801,7 +824,7 @@ a.nav-item.active { color: #ffffff; }
   </p>
   <p class="espera">{{ espera }}</p>
 
-  <section v-if="corte && conteos">
+  <section v-if="corte && conteos && !tienda">
     <h2 class="kicker">Resultado del cruce</h2>
     <div class="filtro-top">
       <div class="chips" role="group" aria-label="Filtrar bopis">
@@ -811,7 +834,7 @@ a.nav-item.active { color: #ffffff; }
           type="button"
           class="chip"
           :aria-pressed="filtro === item[0]"
-          @click="filtro = item[0]; abierto = null"
+          @click="filtro = item[0]"
         >
           {{ item[1] }} <b>{{ entero(conteos[item[0]]) }}</b>
         </button>
@@ -837,17 +860,6 @@ a.nav-item.active { color: #ffffff; }
       <div><span>Sin pinpad</span><strong>{{ entero(conteos.sin) }}</strong></div>
     </div>
 
-    <section class="grafica">
-      <h2>Situación</h2>
-      <div class="grafica-fila" v-for="item in barras" :key="item.nombre">
-        <span :title="item.nombre">{{ item.nombre }}</span>
-        <span class="grafica-pista">
-          <span class="grafica-relleno" :style="{ width: ancho(item) + '%', background: item.color }"></span>
-        </span>
-        <b>{{ item.texto }}</b>
-      </div>
-    </section>
-
     <div class="tools">
       <label class="search">
         <span>Buscar</span>
@@ -857,12 +869,11 @@ a.nav-item.active { color: #ffffff; }
           spellcheck="false"
           autocomplete="off"
           v-model="query"
-          @input="abierto = null"
         >
       </label>
       <p class="visibles">{{ textoVisibles }}</p>
     </div>
-    <p class="leyenda">Verde: ya cobró. Naranja: pinpad activo, sin cobro. Rojo: pinpad dado de alta, sin condición activa. Gris: bopis sin pinpad. El + abre el detalle.</p>
+    <p class="leyenda">Verde: ya cobró. Naranja: pinpad activo, sin cobro. Rojo: pinpad dado de alta, sin condición activa. Gris: bopis sin pinpad. El nombre abre la tienda.</p>
 
     <div class="tabla-wrap">
       <table>
@@ -879,49 +890,31 @@ a.nav-item.active { color: #ffffff; }
           </tr>
         </thead>
         <tbody>
-          <template v-for="(r, i) in filas" :key="r.whCode + '-' + r.nombre + '-' + i">
-            <tr :class="{ open: abierto === r.whCode }">
-              <th scope="row">
-                <button type="button" class="namebtn" :aria-expanded="abierto === r.whCode" @click="alternar(r.whCode)">{{ r.nombre }}</button>
-              </th>
-              <td class="code">{{ r.whCode }}</td>
-              <td class="num">{{ entero(r.cobros) }}</td>
-              <td>
-                <span class="cuando">
-                  <span>{{ cuando(r.ultima).fecha }}</span>
-                  <small>{{ cuando(r.ultima).hora }}</small>
-                </span>
-              </td>
-              <td class="num">{{ dinero(r.monto) }}</td>
-              <td class="num">{{ entero(r.terminales) }}</td>
-              <td>{{ textoProcesadores(r) || '—' }}</td>
-              <td class="marca"><span :class="'estado-celda ' + r.semaforo">{{ r.situacion }}</span></td>
-            </tr>
-            <tr v-if="abierto === r.whCode" class="detail">
-              <td colspan="8">
-                <div class="ficha">
-                  <dl>
-                    <template v-for="par in fichaPares(r)" :key="par[0]">
-                      <dt>{{ par[0] }}</dt>
-                      <dd>{{ par[1] }}</dd>
-                    </template>
-                  </dl>
-                  <div>
-                    <span class="terms-label">{{ r.pinpads.length ? 'Terminales' : 'Sin id de terminal en la condición' }}</span>
-                    <span class="pid" v-for="id in r.pinpads" :key="id">{{ id }}</span>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </template>
+          <tr v-for="(r, i) in filas" :key="r.whCode + '-' + r.nombre + '-' + i" class="fila-tienda" @click="abrir(r)">
+            <th scope="row">
+              <button type="button" class="namebtn" @click.stop="abrir(r)">{{ r.nombre }}</button>
+            </th>
+            <td class="code">{{ r.whCode }}</td>
+            <td class="num">{{ entero(r.cobros) }}</td>
+            <td>
+              <span class="cuando">
+                <span>{{ cuando(r.ultima).fecha }}</span>
+                <small>{{ cuando(r.ultima).hora }}</small>
+              </span>
+            </td>
+            <td class="num">{{ dinero(r.monto) }}</td>
+            <td class="num">{{ entero(r.terminales) }}</td>
+            <td>{{ textoProcesadores(r) || '—' }}</td>
+            <td class="marca"><span :class="'estado-celda ' + r.semaforo">{{ r.situacion }}</span></td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <div class="cards">
-      <article v-for="(r, i) in filas" :key="r.whCode + '-' + i" :class="abierto === r.whCode ? 'card open' : 'card'">
+      <article v-for="(r, i) in filas" :key="r.whCode + '-' + i" class="card" @click="abrir(r)">
         <div class="card-top">
-          <button type="button" class="card-btn" :aria-expanded="abierto === r.whCode" @click="alternar(r.whCode)">{{ r.nombre }}</button>
+          <button type="button" class="card-btn" @click.stop="abrir(r)">{{ r.nombre }}</button>
         </div>
         <div :class="'card-marca ' + r.semaforo">{{ r.situacion }}</div>
         <dl>
@@ -932,21 +925,87 @@ a.nav-item.active { color: #ffffff; }
           <dt>Terminales</dt><dd>{{ entero(r.terminales) }}</dd>
           <dt>Procesador</dt><dd>{{ textoProcesadores(r) || '—' }}</dd>
         </dl>
-        <div v-if="abierto === r.whCode" class="ficha">
-          <dl>
-            <template v-for="par in fichaPares(r)" :key="par[0]">
-              <dt>{{ par[0] }}</dt>
-              <dd>{{ par[1] }}</dd>
-            </template>
-          </dl>
-          <div>
-            <span class="terms-label">{{ r.pinpads.length ? 'Terminales' : 'Sin id de terminal en la condición' }}</span>
-            <span class="pid" v-for="id in r.pinpads" :key="id">{{ id }}</span>
-          </div>
-        </div>
       </article>
     </div>
     <p v-if="filas.length === 0" class="vacio">Ninguna tienda con ese filtro.</p>
+  </section>
+
+  <section v-if="tienda" class="pagina-tienda">
+    <button type="button" class="volver" @click="cerrarTienda">← Volver al corte</button>
+    <div class="tienda-head">
+      <div>
+        <h2>{{ tienda.nombre }}</h2>
+        <p class="tienda-code">{{ tienda.whCode }} · último cobro {{ ultimoTexto(tienda) }}</p>
+      </div>
+      <span :class="'estado-celda ' + tienda.semaforo">{{ tienda.situacion }}</span>
+    </div>
+
+    <div class="sum">
+      <div><span>Cobros</span><strong>{{ entero(tienda.cobros) }}</strong></div>
+      <div><span>Monto</span><strong>{{ dinero(tienda.monto) }}</strong></div>
+      <div><span>Ticket</span><strong>{{ dinero(tienda.ticket) }}</strong></div>
+      <div><span>Terminales</span><strong>{{ entero(tienda.terminales) }}</strong></div>
+      <div><span>Procesador</span><strong>{{ textoProcesadores(tienda) || '—' }}</strong></div>
+    </div>
+
+    <section class="picos">
+      <h2>Picos de cobro</h2>
+      <p class="picos-leyenda">{{ leyendaPicos }}</p>
+      <p v-if="textoPico" class="picos-meta">{{ textoPico }}</p>
+      <p v-if="figura" class="picos-clave">
+        <span><i class="muestra clara"></i> Cobros</span>
+        <span><i class="muestra oscura"></i> Pico, el más alto</span>
+      </p>
+      <svg v-if="figura" :viewBox="figura.view" role="img" :aria-label="textoPico">
+        <line :x1="figura.x0" :y1="figura.baseY" :x2="figura.x1" :y2="figura.baseY" stroke="#d5dbe3" />
+        <g v-for="(p, i) in figura.puntos" :key="i">
+          <rect
+            v-if="p.h > 0"
+            :x="p.x"
+            :y="p.y"
+            :width="p.w"
+            :height="p.h"
+            :fill="p.esPico ? '#146c43' : '#8fd0aa'"
+            rx="1"
+          >
+            <title>{{ p.etiqueta }} · {{ entero(p.cobros) }} cobros · {{ dinero(p.monto) }}</title>
+          </rect>
+          <text v-if="p.esPicoLabel" :x="p.cx" :y="p.labelY" text-anchor="middle" font-size="12" font-weight="700" fill="#146c43">{{ entero(p.cobros) }}</text>
+          <text v-if="p.mostrar" :x="p.cx" :y="figura.baseY + 16" text-anchor="middle" font-size="11" fill="#5c6570">{{ p.etiqueta }}</text>
+        </g>
+      </svg>
+      <div v-if="picosConCobro.length" class="picos-tabla-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ tienda.picosPor === 'hora' ? 'Hora' : 'Día' }}</th>
+              <th class="num">Cobros</th>
+              <th class="num">Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(p, i) in picosConCobro" :key="p.etiqueta + '-' + i" :class="{ pico: p.esPico }">
+              <td>{{ p.etiqueta }} <span v-if="p.esPico" class="pico-tag">Pico</span></td>
+              <td class="num">{{ entero(p.cobros) }}</td>
+              <td class="num">{{ dinero(p.monto) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="ficha">
+      <dl>
+        <template v-for="par in fichaPares(tienda)" :key="par[0]">
+          <dt>{{ par[0] }}</dt>
+          <dd>{{ par[1] }}</dd>
+        </template>
+      </dl>
+      <div>
+        <span class="terms-label">{{ tienda.pinpads.length ? 'Terminales' : 'Sin id de terminal en la condición' }}</span>
+        <span class="pid" v-for="id in tienda.pinpads" :key="id">{{ id }}</span>
+      </div>
+    </div>
   </section>
 
   <p class="footnote">Entran todos los puntos de venta que tienen idPinPad en condiciones. El cobro solo cuenta si isPinpad viene en verdadero. Verde gana sobre naranja y rojo.</p>
@@ -1104,6 +1163,82 @@ function tienePinpad(c) {
   return !!(c && c.idPinPad != null && String(c.idPinPad).trim() !== "");
 }
 
+function horaClave(iso) {
+  const m = String(iso || "").match(/^(\d{4}-\d{2}-\d{2})[ T](\d{2})/);
+  return m ? m[1] + " " + m[2] : "";
+}
+
+function isoDia(d) {
+  const z = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + z(d.getMonth() + 1) + "-" + z(d.getDate());
+}
+
+function etiquetaDia(iso) {
+  const bits = iso.split("-");
+  return Number(bits[2]) + " " + MESES[Number(bits[1]) - 1];
+}
+
+function armarPicos(horas) {
+  if (!horas || !horas.size) return { puntos: [], por: "" };
+  const keys = [...horas.keys()].sort();
+  const dias = new Set(keys.map((k) => k.slice(0, 10)));
+  if (dias.size <= 1) {
+    const dia = keys[0].slice(0, 10);
+    let h0 = Number(keys[0].slice(11, 13));
+    let h1 = Number(keys[keys.length - 1].slice(11, 13));
+    if (h1 === h0) {
+      h0 = Math.max(0, h0 - 1);
+      h1 = Math.min(23, h1 + 1);
+    }
+    const puntos = [];
+    for (let h = h0; h <= h1; h++) {
+      const k = dia + " " + String(h).padStart(2, "0");
+      const v = horas.get(k) || { cobros: 0, monto: 0 };
+      puntos.push({
+        etiqueta: String(h).padStart(2, "0") + ":00",
+        cobros: v.cobros,
+        monto: Math.round(v.monto * 100) / 100,
+      });
+    }
+    return { puntos, por: "hora" };
+  }
+  const porDia = new Map();
+  for (const [k, v] of horas) {
+    const d = k.slice(0, 10);
+    const acc = porDia.get(d) || { cobros: 0, monto: 0 };
+    acc.cobros += v.cobros;
+    acc.monto += v.monto;
+    porDia.set(d, acc);
+  }
+  const inicio = new Date(keys[0].slice(0, 10) + "T00:00:00");
+  const fin = new Date(keys[keys.length - 1].slice(0, 10) + "T00:00:00");
+  const span = Math.round((fin - inicio) / 86400000) + 1;
+  const puntos = [];
+  if (span > 120) {
+    for (const iso of [...porDia.keys()].sort()) {
+      const v = porDia.get(iso);
+      puntos.push({
+        etiqueta: etiquetaDia(iso),
+        cobros: v.cobros,
+        monto: Math.round(v.monto * 100) / 100,
+      });
+    }
+    return { puntos, por: "día" };
+  }
+  const cursor = new Date(inicio);
+  while (cursor <= fin && puntos.length < 130) {
+    const iso = isoDia(cursor);
+    const v = porDia.get(iso) || { cobros: 0, monto: 0 };
+    puntos.push({
+      etiqueta: etiquetaDia(iso),
+      cobros: v.cobros,
+      monto: Math.round(v.monto * 100) / 100,
+    });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+  return { puntos, por: "día" };
+}
+
 function cruzar(pagos, condiciones, tiendas, hoy) {
   const condById = new Map();
   for (const c of condiciones) {
@@ -1139,6 +1274,7 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
         cash: 0,
         neonet: 0,
         pinpads: new Set(),
+        horas: new Map(),
         primera: "",
         ultima: "",
         sinPinpad: false,
@@ -1170,6 +1306,16 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
     if (p.createdAt) {
       if (!s.primera || p.createdAt < s.primera) s.primera = p.createdAt;
       if (!s.ultima || p.createdAt > s.ultima) s.ultima = p.createdAt;
+      const claveHora = horaClave(p.createdAt);
+      if (claveHora) {
+        let b = s.horas.get(claveHora);
+        if (!b) {
+          b = { cobros: 0, monto: 0 };
+          s.horas.set(claveHora, b);
+        }
+        b.cobros++;
+        b.monto += Number(p.monto) || 0;
+      }
     }
   }
 
@@ -1189,6 +1335,7 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       cash: 0,
       neonet: 0,
       pinpads: new Set(),
+      horas: new Map(),
       primera: "",
       ultima: "",
       sinPinpad: true,
@@ -1212,6 +1359,7 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       cash: 0,
       neonet: 0,
       pinpads: new Set(),
+      horas: new Map(),
       primera: "",
       ultima: "",
       sinPinpad: true,
@@ -1221,6 +1369,7 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
   const rows = [...stores.values()].map((s) => {
     const pinpads = [...s.pinpads].sort();
     const monto = Math.round(s.monto * 100) / 100;
+    const serie = armarPicos(s.horas);
     const dias = s.ultima ? diasDesde(s.ultima, hoy) : null;
     let semaforo = "sin";
     if (!s.sinPinpad && s.pinpads.size) {
@@ -1252,6 +1401,8 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       semaforo,
       situacion: SIT[semaforo],
       situacionRank: rank[semaforo],
+      picos: serie.puntos,
+      picosPor: serie.por,
     };
   });
 
@@ -1475,7 +1626,7 @@ const CorteModulo = {
         filtro: "todas",
         sortKey: "cobros",
         sortDir: "desc",
-        abierto: null,
+        sel: null,
         fecha: hoyTexto(),
       };
     },
@@ -1519,14 +1670,37 @@ const CorteModulo = {
         if (this.corte?.sinWh) lista.push(Corte.entero(this.corte.sinWh) + " condiciones con pinpad no traen código de tienda.");
         return lista;
       },
-      barras() {
-        if (!this.conteos) return [];
-        return [
-          { nombre: "Ya cobraron", valor: this.conteos.verde, color: "#146c43", texto: Corte.entero(this.conteos.verde) },
-          { nombre: "Configurados", valor: this.conteos.naranja, color: "#c47b12", texto: Corte.entero(this.conteos.naranja) },
-          { nombre: "Solo están", valor: this.conteos.rojo, color: "#9b3b32", texto: Corte.entero(this.conteos.rojo) },
-          { nombre: "Sin pinpad", valor: this.conteos.sin, color: "#6b7780", texto: Corte.entero(this.conteos.sin) },
-        ];
+      tienda() {
+        if (!this.sel || !this.corte) return null;
+        return this.corte.rows.find((r) => this.clave(r) === this.sel) || null;
+      },
+      leyendaPicos() {
+        const r = this.tienda;
+        if (!r || !(r.picos || []).some((p) => p.cobros > 0)) return "Sin cobros con pinpad.";
+        if (r.picosPor === "hora") {
+          return "Cada barra es una hora. La altura es cuántos cobros con pinpad hubo en esa hora. La barra oscura es el pico: la hora con más cobros. Los huecos son horas sin cobro.";
+        }
+        return "Cada barra es un día. La altura es cuántos cobros con pinpad hubo ese día. La barra oscura es el pico: el día con más cobros. Los huecos son días sin cobro.";
+      },
+      textoPico() {
+        const top = this.picosConCobro.filter((p) => p.esPico);
+        if (!top.length) return "";
+        const max = top[0].cobros;
+        const cuando = top.slice(0, 4).map((p) => p.etiqueta).join(", ");
+        const extra = top.length > 4 ? "…" : "";
+        let frase = "Pico en " + cuando + extra + ": " + Corte.entero(max) + (max === 1 ? " cobro" : " cobros");
+        if (top.length === 1) frase += ", " + Corte.dinero(top[0].monto);
+        return frase + ".";
+      },
+      picosConCobro() {
+        const r = this.tienda;
+        if (!r) return [];
+        const vivos = (r.picos || []).filter((p) => p.cobros > 0);
+        const max = vivos.reduce((m, p) => Math.max(m, p.cobros), 0);
+        return vivos.map((p) => ({ ...p, esPico: p.cobros > 0 && p.cobros === max }));
+      },
+      figura() {
+        return this.figuraPicos(this.tienda);
       },
       textoVisibles() {
         if (!this.corte) return "";
@@ -1582,7 +1756,7 @@ const CorteModulo = {
         if (alarmas.length) window.alert("Revisa los archivos:\n\n" + alarmas.join("\n"));
         if (next.pagos && next.condiciones && next.tiendas) {
           this.corte = Corte.cruzar(next.pagos.rows, next.condiciones.rows, next.tiendas.rows, Corte.hoyLocal());
-          this.abierto = null;
+          this.sel = null;
           this.espera = "";
         } else {
           const faltan = ["pagos", "condiciones", "tiendas"].filter((k) => !next[k]);
@@ -1602,7 +1776,7 @@ const CorteModulo = {
         e.stopPropagation();
         this.slots = { pagos: null, condiciones: null, tiendas: null };
         this.corte = null;
-        this.abierto = null;
+        this.sel = null;
         this.espera = "El corte aparece cuando los tres archivos están puestos.";
         if (this.$refs.archivo) this.$refs.archivo.value = "";
       },
@@ -1611,7 +1785,6 @@ const CorteModulo = {
         this.filtro = "todas";
         this.sortKey = "cobros";
         this.sortDir = "desc";
-        this.abierto = null;
       },
       ordenar(key) {
         if (this.sortKey === key) this.sortDir = this.sortDir === "asc" ? "desc" : "asc";
@@ -1624,8 +1797,68 @@ const CorteModulo = {
         if (!this.filas.length) return;
         descargarBlob(Corte.libro(this.filas, this.fecha), "corte-pinpad-" + Corte.hoyLocal() + ".xlsx");
       },
-      alternar(whCode) {
-        this.abierto = this.abierto === whCode ? null : whCode;
+      clave(r) {
+        return [r.whCode, r.nombre, (r.warehouseIds || []).join(",")].join("\t");
+      },
+      abrir(r) {
+        this.sel = this.clave(r);
+        this.$nextTick(() => {
+          const main = this.$el && this.$el.closest(".main-content");
+          if (main) main.scrollTop = 0;
+        });
+      },
+      cerrarTienda() {
+        this.sel = null;
+        this.$nextTick(() => {
+          const main = this.$el && this.$el.closest(".main-content");
+          if (main) main.scrollTop = 0;
+        });
+      },
+      figuraPicos(r) {
+        const pts = (r && r.picos) || [];
+        if (!pts.some((p) => p.cobros > 0)) return null;
+        const W = 760;
+        const H = 228;
+        const padL = 6;
+        const padR = 6;
+        const padT = 22;
+        const padB = 34;
+        const baseY = H - padB;
+        const innerH = baseY - padT;
+        const max = Math.max(...pts.map((p) => p.cobros), 1);
+        const n = pts.length;
+        const slot = (W - padL - padR) / n;
+        const bw = Math.min(36, Math.max(2, slot * 0.72));
+        const puntos = pts.map((p, i) => {
+          const h = (p.cobros / max) * innerH;
+          const x = padL + slot * i + (slot - bw) / 2;
+          const y = baseY - h;
+          return {
+            etiqueta: p.etiqueta,
+            cobros: p.cobros,
+            monto: p.monto,
+            x: Math.round(x * 10) / 10,
+            y: Math.round(y * 10) / 10,
+            w: Math.round(bw * 10) / 10,
+            h: Math.round(h * 10) / 10,
+            cx: Math.round((x + bw / 2) * 10) / 10,
+            labelY: Math.max(12, Math.round((y - 6) * 10) / 10),
+            esPico: p.cobros > 0 && p.cobros === max,
+            esPicoLabel: false,
+            mostrar: false,
+          };
+        });
+        const paso = Math.max(1, Math.ceil(n / 8));
+        puntos.forEach((p, i) => {
+          p.mostrar = n <= 12 || i === 0 || i === n - 1 || i % paso === 0;
+        });
+        let ultimo = -999;
+        puntos.forEach((p) => {
+          if (!p.esPico || p.cx - ultimo < 36) return;
+          p.esPicoLabel = true;
+          ultimo = p.cx;
+        });
+        return { view: "0 0 " + W + " " + H, baseY, x0: padL, x1: W - padR, puntos };
       },
       cuando(iso) {
         return Corte.fechaParte(iso);
@@ -1652,11 +1885,6 @@ const CorteModulo = {
       ariaSort(col) {
         if (this.sortKey !== col.key) return "none";
         return this.sortDir === "asc" ? "ascending" : "descending";
-      },
-      ancho(item) {
-        const max = Math.max(...this.barras.map((b) => Math.abs(Number(b.valor) || 0)), 0);
-        const n = Number(item.valor) || 0;
-        return max ? (Math.abs(n) / max) * 100 : 0;
       },
     },
 };
