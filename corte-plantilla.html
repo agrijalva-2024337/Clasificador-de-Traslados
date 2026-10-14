@@ -270,9 +270,11 @@ tr.click:hover { background: #dcedf1; }
   --line: #d5dbe3;
   --moss: #146c43;
   --head: #1e2933;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 20px 16px 48px;
+  --excel: #217346;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 20px 24px 48px;
   color: var(--ink);
   font-size: 15px;
   line-height: 1.4;
@@ -314,17 +316,19 @@ tr.click:hover { background: #dcedf1; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 44px;
-  padding: 0 16px;
+  min-height: 40px;
+  padding: 0 14px;
   border: 0;
   border-radius: 8px;
   background: #d5dbe3;
   color: #5c6570;
-  font-weight: 600;
+  font-weight: 650;
   width: auto;
+  flex-shrink: 0;
 }
 
-.corte-pinpad .excel:not(:disabled) { background: #217346; color: #fff; }
+.corte-pinpad .excel svg { display: block; }
+.corte-pinpad .excel:not(:disabled) { background: var(--excel); color: #fff; }
 .corte-pinpad .excel:not(:disabled):hover { background: #1b623c; }
 .corte-pinpad .excel:disabled { cursor: not-allowed; }
 .corte-pinpad .excel small { font-weight: 500; }
@@ -389,87 +393,210 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .pasos em { font-style: normal; color: var(--ink); font-weight: 600; }
 .corte-pinpad .espera { min-height: 1.2em; margin: 10px 0 0; color: var(--muted); font-size: 13px; }
 
-.corte-pinpad .kicker {
-  margin: 28px 0 8px;
-  font-size: 13px;
-  font-weight: 650;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: .04em;
+.corte-pinpad .panel {
+  margin-top: 18px;
+  padding: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 
-.corte-pinpad .filtro-top {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+.corte-pinpad .panel-head h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.corte-pinpad .panel-head p {
+  margin: 6px 0 14px;
+  color: #243038;
+  font-size: 16px;
+  font-weight: 550;
+  line-height: 1.45;
+}
+
+.corte-pinpad .avisos {
   margin: 0 0 14px;
+  padding: 10px 12px 10px 28px;
+  list-style: disc;
+  border: 1px solid #f0c8c4;
+  border-radius: 10px;
+  background: #fff8f7;
+  color: #9b3b32;
+  font-size: 13px;
 }
 
-.corte-pinpad .chips { display: flex; flex-wrap: wrap; gap: 8px; flex: 1 1 280px; }
+.corte-pinpad .avisos li + li { margin-top: 4px; }
 
-.corte-pinpad .chip {
-  border: 1px solid var(--line);
-  background: var(--paper);
-  border-radius: 999px;
-  min-height: 36px;
-  padding: 6px 12px;
-  color: var(--muted);
-  width: auto;
-}
-
-.corte-pinpad .chip[aria-pressed="true"] { background: var(--head); color: #fff; border-color: var(--head); }
-.corte-pinpad .chip b { font-weight: 600; margin-left: 4px; }
-
-.corte-pinpad .limpiar {
-  min-height: 40px;
-  padding: 0 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--paper);
-  font-weight: 650;
-  width: auto;
-}
-
-.corte-pinpad .pipeline,
 .corte-pinpad .sum {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 10px;
   margin: 0;
 }
 
-.corte-pinpad .pipeline .bit {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.corte-pinpad .pipeline b { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.corte-pinpad .fuera { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
-.corte-pinpad .aviso { margin: 10px 0 0; font-size: 14px; color: #9b3b32; }
-.corte-pinpad .sum { margin-top: 12px; }
-
 .corte-pinpad .sum div {
-  background: var(--paper);
+  background: #f7f9fb;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 12px 14px;
 }
 
 .corte-pinpad .sum span { display: block; margin-bottom: 4px; color: var(--muted); font-size: 12px; }
 .corte-pinpad .sum strong { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
 
+.corte-pinpad .sum-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  min-height: 118px;
+  text-align: left;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--head);
+  border-radius: 12px;
+  padding: 12px 14px 10px;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(30, 41, 51, 0.03);
+}
+
+.corte-pinpad .sum-card:hover,
+.corte-pinpad .sum-card:focus-visible {
+  border-color: currentColor;
+  background: #f8fbf9;
+  outline: none;
+  box-shadow: 0 6px 16px rgba(30, 41, 51, 0.06);
+}
+
+.corte-pinpad .sum-card span { color: var(--muted); font-size: 12px; font-weight: 650; letter-spacing: .01em; }
+.corte-pinpad .sum-card strong {
+  margin-top: 6px;
+  font-size: 26px;
+  line-height: 1.1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.corte-pinpad .sum-card small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+.corte-pinpad .sum-card em {
+  margin-top: auto;
+  padding-top: 10px;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--moss);
+}
+
+.corte-pinpad .tono-todas { color: #1e2933; border-left-color: #1e2933; }
+.corte-pinpad .tono-monto { color: #0f5e73; border-left-color: #0f5e73; }
+.corte-pinpad .tono-monto strong { color: #0f5e73; font-size: 22px; }
+.corte-pinpad .tono-verde { color: #146c43; border-left-color: #146c43; }
+.corte-pinpad .tono-verde strong { color: #146c43; }
+.corte-pinpad .tono-naranja { color: #9a5410; border-left-color: #e39b3b; }
+.corte-pinpad .tono-naranja strong { color: #9a5410; }
+.corte-pinpad .tono-rojo { color: #9b3b32; border-left-color: #d2665c; }
+.corte-pinpad .tono-rojo strong { color: #9b3b32; }
+.corte-pinpad .tono-sin { color: #3d4650; border-left-color: #8b95a1; }
+.corte-pinpad .tono-pinpad { color: #217346; border-left-color: #217346; }
+.corte-pinpad .tono-pinpad strong { color: #217346; }
+.corte-pinpad .tono-bac { color: #1d4e89; border-left-color: #1d4e89; }
+.corte-pinpad .tono-bac strong { color: #1d4e89; }
+.corte-pinpad .tono-cash { color: #6b4c2a; border-left-color: #a67c52; }
+.corte-pinpad .tono-cash strong { color: #6b4c2a; }
+.corte-pinpad .tono-neonet { color: #5b3d8f; border-left-color: #7d62b5; }
+.corte-pinpad .tono-neonet strong { color: #5b3d8f; }
+
+.corte-pinpad .velo {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(21, 34, 42, 0.52);
+}
+
+.corte-pinpad .dialogo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: min(88vh, 920px);
+  background: var(--paper);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(21, 34, 42, 0.32);
+}
+
+.corte-pinpad .dialogo-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: #f7f9fb;
+}
+
+.corte-pinpad .dialogo-head h2 { margin: 0; font-size: 20px; }
+.corte-pinpad .dialogo-head p { margin: 6px 0 0; color: #243038; font-size: 16px; font-weight: 550; line-height: 1.4; }
+.corte-pinpad .dialogo td.condicion { white-space: normal; min-width: 220px; max-width: 380px; font-weight: 650; }
+.corte-pinpad .dialogo-acciones { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+.corte-pinpad .cerrar {
+  width: auto;
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+  font-weight: 650;
+}
+
+.corte-pinpad .dialogo-cuerpo { overflow: auto; background: #fff; }
+.corte-pinpad .dialogo table { min-width: 720px; }
+.corte-pinpad .dialogo table.tabla-cobros { min-width: 640px; }
+.corte-pinpad .dialogo td,
+.corte-pinpad .dialogo tbody th { white-space: nowrap; overflow-wrap: normal; }
+.corte-pinpad .dialogo td.marca { width: auto; }
+.corte-pinpad .dialogo .estado-celda {
+  display: inline-flex;
+  width: auto;
+  min-height: 26px;
+  white-space: nowrap;
+}
+.corte-pinpad .dialogo-nota {
+  margin: 0;
+  padding: 8px 14px 10px;
+  color: var(--muted);
+  font-size: 12px;
+  border-top: 1px solid var(--line);
+  background: #f7f9fb;
+}
+.corte-pinpad .dialogo thead th {
+  padding: 12px 10px;
+  font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.corte-pinpad .dialogo thead th.num { text-align: right; }
+
 .corte-pinpad .tools {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 16px;
-  margin-top: 18px;
+  gap: 12px;
+  margin: 0 0 12px;
 }
 
 .corte-pinpad .search { flex: 1 1 220px; display: block; font-weight: 400; color: inherit; }
@@ -484,8 +611,39 @@ tr.click:hover { background: #dcedf1; }
   min-height: 44px;
 }
 
-.corte-pinpad .visibles { margin: 0 0 4px auto; font-weight: 650; }
-.corte-pinpad .leyenda { margin: 10px 0 12px; color: var(--muted); font-size: 13px; }
+.corte-pinpad .visibles { margin: 0 0 4px auto; font-weight: 650; color: var(--muted); font-size: 13px; }
+
+.corte-pinpad .leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.corte-pinpad .leyenda li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f4f6f8;
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.corte-pinpad .punto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--head);
+}
+.corte-pinpad .punto.verde { background: #146c43; }
+.corte-pinpad .punto.naranja { background: #e39b3b; }
+.corte-pinpad .punto.rojo { background: #d2665c; }
+.corte-pinpad .punto.sin { background: #8b95a1; }
 
 .corte-pinpad .tabla-wrap {
   overflow-x: auto;
@@ -494,7 +652,7 @@ tr.click:hover { background: #dcedf1; }
   border-radius: 10px;
 }
 
-.corte-pinpad table { width: 100%; min-width: 920px; border-collapse: collapse; font-size: 15px; }
+.corte-pinpad table { width: 100%; min-width: 760px; border-collapse: collapse; font-size: 15px; }
 
 .corte-pinpad thead th {
   position: sticky;
@@ -590,8 +748,10 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .estado-celda.sin,
 .corte-pinpad .card-marca.sin { background: #eef1f4; color: #3d4650; }
 
+.corte-pinpad tbody tr:nth-child(even) td,
+.corte-pinpad tbody tr:nth-child(even) th { background: #f7f9fb; }
 .corte-pinpad tbody tr:hover td,
-.corte-pinpad tbody tr:hover th { background: #f3faf6; }
+.corte-pinpad tbody tr:hover th { background: #eef6f1; }
 .corte-pinpad tr.open td,
 .corte-pinpad tr.open th { background: #f4f7f5; }
 .corte-pinpad tr.detail td { padding: 0; background: #f7f8fa; }
@@ -617,13 +777,118 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .terms-label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; }
 
 .corte-pinpad .pid {
-  display: inline-block;
-  margin: 0 8px 8px 0;
-  padding: 3px 7px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 2px 8px;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 6px;
   font-size: 12px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.corte-pinpad .pid.activo { background: #d9f3e4; border-color: #b7e4c7; color: #1b6b43; }
+.corte-pinpad .pid.inactivo { background: #f8d4d2; border-color: #f0bdb9; color: #8a3a36; }
+
+.corte-pinpad .terminales {
+  margin: 16px 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.corte-pinpad .terminales h2 { margin: 0; font-size: 16px; }
+.corte-pinpad .term-head { padding: 14px 16px 12px; }
+.corte-pinpad .term-head p {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  background: #f4f7f8;
+  border-radius: 10px;
+  color: #243038;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.corte-pinpad .term-tabla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+
+.corte-pinpad .term-col + .term-col { border-left: 1px solid var(--line); }
+.corte-pinpad .term-col.extra { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }
+
+.corte-pinpad .term-col header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.corte-pinpad .term-col header { background: #f4f6f8; color: var(--ink); }
+.corte-pinpad .term-col header b { font-variant-numeric: tabular-nums; }
+
+.corte-pinpad .term-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+  min-height: 64px;
+  padding: 12px 14px 14px;
+}
+
+.corte-pinpad .term-vacio { margin: 0; color: var(--muted); font-size: 13px; }
+
+.corte-pinpad .term-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--moss);
+  font-weight: 700;
+  padding: 0;
+  width: auto;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.corte-pinpad tr.fila-terminales td {
+  padding: 0;
+  background: #f7f9fb;
+}
+.corte-pinpad tr.fila-terminales:hover td { background: #f7f9fb; }
+.corte-pinpad .term-tabla.anidada { border-top: 0; }
+
+.corte-pinpad .ficha-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+}
+.corte-pinpad .ficha-card:hover,
+.corte-pinpad .ficha-card:focus-visible {
+  border-color: var(--moss);
+  background: #f3faf6;
+  outline: none;
+}
+.corte-pinpad .ficha-card em {
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--moss);
 }
 
 .corte-pinpad .cards { display: none; }
@@ -679,7 +944,41 @@ tr.click:hover { background: #dcedf1; }
 }
 
 .corte-pinpad .tienda-head h2 { margin: 0; font-size: 26px; }
-.corte-pinpad .tienda-code { margin: 4px 0 0; color: var(--muted); }
+.corte-pinpad .tienda-code { margin: 6px 0 0; color: #243038; font-size: 16px; font-weight: 600; line-height: 1.4; }
+
+.corte-pinpad .resumen {
+  margin: 16px 0;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.corte-pinpad .resumen-head { padding: 16px 18px 12px; }
+.corte-pinpad .resumen-head h2 { margin: 0; font-size: 20px; }
+.corte-pinpad .resumen-head p {
+  margin: 8px 0 0;
+  max-width: 78ch;
+  color: #243038;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.corte-pinpad .resumen-scroll { overflow: auto; }
+.corte-pinpad .resumen table { min-width: 1480px; }
+.corte-pinpad .resumen thead th {
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.corte-pinpad .resumen td {
+  padding: 12px;
+  vertical-align: top;
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 650;
+}
+.corte-pinpad .resumen td.verde { color: #146c43; font-weight: 750; }
 
 .corte-pinpad .picos {
   background: var(--paper);
@@ -689,10 +988,20 @@ tr.click:hover { background: #dcedf1; }
   margin: 16px 0;
 }
 
-.corte-pinpad .picos h2 { margin: 0 0 4px; font-size: 16px; }
-.corte-pinpad .picos-meta { margin: 0 0 6px; color: var(--muted); font-size: 13px; }
-.corte-pinpad .picos-leyenda { margin: 0 0 10px; max-width: 68ch; font-size: 14px; }
-.corte-pinpad .picos-clave { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 12px; color: var(--muted); font-size: 13px; }
+.corte-pinpad .picos h2 { margin: 0 0 8px; font-size: 20px; }
+.corte-pinpad .picos-meta,
+.corte-pinpad .picos-leyenda {
+  margin: 0 0 10px;
+  max-width: 82ch;
+  padding: 10px 12px;
+  background: #f4f7f8;
+  border-radius: 10px;
+  color: #243038;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.corte-pinpad .picos-clave { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 12px; color: #243038; font-size: 16px; font-weight: 650; }
 .corte-pinpad .picos-clave span { display: inline-flex; align-items: center; gap: 6px; }
 .corte-pinpad .muestra { width: 12px; height: 12px; border-radius: 2px; }
 .corte-pinpad .muestra.clara { background: #8fd0aa; }
@@ -713,16 +1022,17 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .picos text { font-family: system-ui, sans-serif; }
 
 .corte-pinpad .picos-tabla-wrap {
-  max-height: 320px;
+  max-height: 460px;
   overflow: auto;
   margin-top: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
 }
 
-.corte-pinpad .picos table { min-width: 0; width: 100%; font-size: 14px; }
-.corte-pinpad .picos thead th { padding: 8px 10px; font-size: 12px; }
-.corte-pinpad .picos td { padding: 8px 10px; }
+.corte-pinpad .picos table { min-width: 980px; width: 100%; font-size: 16px; }
+.corte-pinpad .picos thead th { padding: 10px 12px; font-size: 14px; }
+.corte-pinpad .picos td { padding: 10px 12px; }
+.corte-pinpad .pico-sub { color: #3d4650; font-size: 14px; font-weight: 650; }
 .corte-pinpad .picos tr.pico td { background: #e7f6ec; font-weight: 650; }
 .corte-pinpad .pico-tag {
   display: inline-block;
@@ -731,7 +1041,7 @@ tr.click:hover { background: #dcedf1; }
   border-radius: 4px;
   background: #146c43;
   color: #fff;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   vertical-align: 1px;
 }
@@ -741,26 +1051,37 @@ tr.click:hover { background: #dcedf1; }
   padding: 16px;
   background: var(--paper);
   border: 1px solid var(--line);
-  border-left: 3px solid var(--moss);
-  border-radius: 10px;
+  border-radius: 14px;
+  grid-template-columns: 1fr;
+}
+.corte-pinpad .pagina-tienda .ficha dl {
+  grid-template-columns: minmax(140px, 180px) 1fr;
+  max-width: 520px;
 }
 
 .corte-pinpad .pagina-tienda .estado-celda { min-width: 140px; }
 
 .corte-pinpad .footnote {
   margin: 28px 0 0;
-  color: var(--muted);
-  font-size: 13px;
-  max-width: 70ch;
+  padding: 12px 14px;
+  background: #f4f7f8;
+  border-radius: 10px;
+  color: #243038;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.45;
+  max-width: 88ch;
 }
 
 @media (max-width: 760px) {
   .corte-pinpad h1 { font-size: 24px; }
-  .corte-pinpad .excel { width: 100%; }
+  .corte-pinpad .title-row .excel { width: 100%; }
   .corte-pinpad .visibles { margin-left: 0; }
   .corte-pinpad .tabla-wrap { display: none; }
   .corte-pinpad .cards { display: flex; flex-direction: column; gap: 10px; }
   .corte-pinpad .pagina-tienda .ficha { grid-template-columns: 1fr; }
+  .corte-pinpad .term-tabla { grid-template-columns: 1fr; }
+  .corte-pinpad .term-col + .term-col { border-left: 0; border-top: 1px solid var(--line); }
   .corte-pinpad .tienda-head { flex-direction: column; }
 }
 
@@ -811,6 +1132,9 @@ a.nav-item.active { color: #ffffff; }
         <p class="deck">Primero el pago con terminal. Luego la condición. Al final, la tienda.</p>
       </div>
       <button type="button" class="excel" :disabled="filas.length === 0" @click="excel">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path fill="currentColor" d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-6zm1 7V3.5L18.5 9H15zM8.2 18l2.1-3.2L8.4 12h1.7l1.2 2 1.2-2h1.6l-1.9 2.8L14.3 18h-1.7l-1.3-2.1L10 18H8.2z"/>
+        </svg>
         <span>Excel</span>
         <small v-if="filas.length > 0">{{ entero(filas.length) }}</small>
       </button>
@@ -837,41 +1161,57 @@ a.nav-item.active { color: #ffffff; }
   <p class="espera">{{ espera }}</p>
 
   <section v-if="corte && conteos && !tienda">
-    <h2 class="kicker">Resultado del cruce</h2>
-    <div class="filtro-top">
-      <div class="chips" role="group" aria-label="Filtrar bopis">
+    <ul v-if="notas.length" class="avisos">
+      <li v-for="nota in notas" :key="nota">{{ nota }}</li>
+    </ul>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Estado de los bopis</h2>
+        <p>Cada card abre la tabla de ese grupo, con todos los datos del punto.</p>
+      </div>
+      <div class="sum">
         <button
-          v-for="item in filtros"
-          :key="item[0]"
+          v-for="card in cardsCorte"
+          :key="card.id"
           type="button"
-          class="chip"
-          :aria-pressed="filtro === item[0]"
-          @click="filtro = item[0]"
+          :class="'sum-card tono-' + card.tono"
+          @click="abrirDetalle(card.id)"
         >
-          {{ item[1] }} <b>{{ entero(conteos[item[0]]) }}</b>
+          <span>{{ card.titulo }}</span>
+          <strong>{{ card.valor }}</strong>
+          <small>{{ card.nota }}</small>
+          <em>Ver tabla</em>
         </button>
       </div>
-      <button type="button" class="limpiar" @click="limpiarFiltros">Limpiar</button>
-    </div>
+    </section>
 
-    <div class="pipeline">
-      <span class="bit"><b>{{ entero(conteos.todas) }}</b>bopis</span>
-      <span class="bit"><b>{{ entero(conteos.verde) }}</b>ya cobraron</span>
-      <span class="bit"><b>{{ entero(conteos.naranja) }}</b>configurados</span>
-      <span class="bit"><b>{{ entero(conteos.rojo) }}</b>Sin cobros ni pinpads activos</span>
-      <span class="bit"><b>{{ entero(conteos.sin) }}</b>sin pinpad</span>
-    </div>
-    <p v-if="corte.pinpad > 0" class="fuera">{{ entero(corte.pinpad) }} cobros con pinpad. posId 1 es BAC, 0 es CASH y 2 es NEONET.</p>
-    <p v-if="notas.length > 0" class="aviso">{{ notas.join(' ') }}</p>
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Procesadores</h2>
+        <p>Cobros con terminal, separados por posId: 1 BAC, 0 CASH y 2 NEONET.</p>
+      </div>
+      <div class="sum">
+        <button
+          v-for="card in cardsProceso"
+          :key="card.id"
+          type="button"
+          :class="'sum-card tono-' + card.tono"
+          @click="abrirDetalle(card.id)"
+        >
+          <span>{{ card.titulo }}</span>
+          <strong>{{ card.valor }}</strong>
+          <small>{{ card.nota }}</small>
+          <em>Ver tabla</em>
+        </button>
+      </div>
+    </section>
 
-    <div class="sum">
-      <div><span>Monto pinpad</span><strong>{{ dinero(conteos.monto) }}</strong></div>
-      <div><span>Ya cobraron</span><strong>{{ entero(conteos.verde) }}</strong></div>
-      <div><span>Configurados</span><strong>{{ entero(conteos.naranja) }}</strong></div>
-      <div><span>Solo están</span><strong>{{ entero(conteos.rojo) }}</strong></div>
-      <div><span>Sin pinpad</span><strong>{{ entero(conteos.sin) }}</strong></div>
-    </div>
-
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Tabla general</h2>
+        <p>El nombre abre la ficha. El número de terminales abre el detalle en la fila.</p>
+      </div>
     <div class="tools">
       <label class="search">
         <span>Buscar</span>
@@ -884,8 +1224,19 @@ a.nav-item.active { color: #ffffff; }
         >
       </label>
       <p class="visibles">{{ textoVisibles }}</p>
+      <button type="button" class="excel" :disabled="filas.length === 0" @click="excel">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path fill="currentColor" d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-6zm1 7V3.5L18.5 9H15zM8.2 18l2.1-3.2L8.4 12h1.7l1.2 2 1.2-2h1.6l-1.9 2.8L14.3 18h-1.7l-1.3-2.1L10 18H8.2z"/>
+        </svg>
+        <span>Excel</span>
+      </button>
     </div>
-    <p class="leyenda">Verde: ya cobró. Naranja: pinpad activo, sin cobro. Rojo: pinpad dado de alta, sin condición activa. Gris: bopis sin pinpad. El nombre abre la tienda.</p>
+    <ul class="leyenda">
+      <li><i class="punto verde"></i> Ya cobró</li>
+      <li><i class="punto naranja"></i> Configurado, sin cobro</li>
+      <li><i class="punto rojo"></i> Sin cobros ni pinpads activos</li>
+      <li><i class="punto sin"></i> Sin pinpad</li>
+    </ul>
 
     <div class="tabla-wrap">
       <table>
@@ -902,23 +1253,33 @@ a.nav-item.active { color: #ffffff; }
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(r, i) in filas" :key="r.whCode + '-' + r.nombre + '-' + i" class="fila-tienda" @click="abrir(r)">
-            <th scope="row">
-              <button type="button" class="namebtn" @click.stop="abrir(r)">{{ r.nombre }}</button>
-            </th>
-            <td class="code">{{ r.whCode }}</td>
-            <td class="num">{{ entero(r.cobros) }}</td>
-            <td>
-              <span class="cuando">
-                <span>{{ cuando(r.ultima).fecha }}</span>
-                <small>{{ cuando(r.ultima).hora }}</small>
-              </span>
-            </td>
-            <td class="num">{{ dinero(r.monto) }}</td>
-            <td class="num">{{ entero(r.terminales) }}</td>
-            <td>{{ textoProcesadores(r) || '—' }}</td>
-            <td class="marca"><span :class="'estado-celda ' + r.semaforo">{{ r.situacion }}</span></td>
-          </tr>
+          <template v-for="(r, i) in filas" :key="r.whCode + '-' + r.nombre + '-' + i">
+            <tr class="fila-tienda" @click="abrir(r)">
+              <th scope="row">
+                <button type="button" class="namebtn" @click.stop="abrir(r)">{{ r.nombre }}</button>
+              </th>
+              <td class="code">{{ r.whCode }}</td>
+              <td class="num">{{ entero(r.cobros) }}</td>
+              <td class="num">
+                <button type="button" class="term-toggle" @click.stop="toggleTerminales(r)">{{ entero(r.terminales) }}</button>
+              </td>
+              <td>{{ textoProcesadores(r) || '—' }}</td>
+              <td class="marca"><span :class="'estado-celda ' + r.semaforo">{{ r.situacion }}</span></td>
+            </tr>
+            <tr v-if="terminalesAbiertas(r)" class="fila-terminales">
+              <td colspan="6">
+                <div class="term-tabla anidada">
+                  <div v-for="bloque in bloquesDe(r)" :key="bloque.id" :class="'term-col ' + (bloque.extra ? 'extra' : '')">
+                    <header><span>{{ bloque.titulo }}</span><b>{{ entero(bloque.items.length) }}</b></header>
+                    <div class="term-lista">
+                      <span v-for="t in bloque.items" :key="bloque.id + '-' + t.id" :class="'pid ' + (t.activo ? 'activo' : 'inactivo')">{{ t.id }}</span>
+                      <p v-if="!bloque.items.length" class="term-vacio">Sin terminales</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </template>
         </tbody>
       </table>
     </div>
@@ -932,14 +1293,69 @@ a.nav-item.active { color: #ffffff; }
         <dl>
           <dt>Código</dt><dd>{{ r.whCode }}</dd>
           <dt>Cobros</dt><dd>{{ entero(r.cobros) }}</dd>
-          <dt>Monto</dt><dd>{{ dinero(r.monto) }}</dd>
-          <dt>Último cobro</dt><dd>{{ ultimoTexto(r) }}</dd>
-          <dt>Terminales</dt><dd>{{ entero(r.terminales) }}</dd>
+          <dt>Terminales</dt><dd><button type="button" class="term-toggle" @click.stop="toggleTerminales(r)">{{ entero(r.terminales) }}</button></dd>
           <dt>Procesador</dt><dd>{{ textoProcesadores(r) || '—' }}</dd>
         </dl>
+        <div v-if="terminalesAbiertas(r)" class="term-tabla anidada">
+            <div v-for="bloque in bloquesDe(r)" :key="'m-' + bloque.id" :class="'term-col ' + (bloque.extra ? 'extra' : '')">
+              <header><span>{{ bloque.titulo }}</span><b>{{ entero(bloque.items.length) }}</b></header>
+              <div class="term-lista">
+                <span v-for="t in bloque.items" :key="'m-' + bloque.id + '-' + t.id" :class="'pid ' + (t.activo ? 'activo' : 'inactivo')">{{ t.id }}</span>
+                <p v-if="!bloque.items.length" class="term-vacio">Sin terminales</p>
+              </div>
+            </div>
+          </div>
       </article>
     </div>
-    <p v-if="filas.length === 0" class="vacio">Ninguna tienda con ese filtro.</p>
+    <p v-if="filas.length === 0" class="vacio">Ninguna tienda coincide con la búsqueda.</p>
+    </section>
+
+    <div v-if="detalle" class="velo" @click.self="cerrarDetalle">
+      <div class="dialogo" role="dialog" aria-modal="true" :aria-label="detalle.titulo">
+        <div class="dialogo-head">
+          <div>
+            <h2>{{ detalle.titulo }}</h2>
+            <p>{{ detalle.nota }} · {{ entero(detalle.filas.length) }} {{ detalle.filas.length === 1 ? "tienda" : "tiendas" }}</p>
+          </div>
+          <div class="dialogo-acciones">
+            <button type="button" class="excel" :disabled="detalle.filas.length === 0" @click.stop="excelDetalle">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path fill="currentColor" d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-6zm1 7V3.5L18.5 9H15zM8.2 18l2.1-3.2L8.4 12h1.7l1.2 2 1.2-2h1.6l-1.9 2.8L14.3 18h-1.7l-1.3-2.1L10 18H8.2z"/>
+              </svg>
+              <span>Excel</span>
+            </button>
+            <button type="button" class="cerrar" @click="cerrarDetalle">Cerrar</button>
+          </div>
+        </div>
+        <div class="dialogo-cuerpo">
+          <table v-if="detalle.filas.length">
+            <thead>
+              <tr>
+                <th v-for="col in columnasDetalle" :key="col.key" :class="col.num ? 'num' : undefined">{{ col.label }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                v-for="(r, i) in detalle.filas"
+                :key="r.whCode + '-' + r.nombre + '-d-' + i"
+                class="fila-tienda"
+                @click="abrirDesdeDetalle(r)"
+              >
+                <template v-for="col in columnasDetalle" :key="col.key">
+                  <th v-if="col.key === 'nombre'" scope="row">{{ r.nombre }}</th>
+                  <td v-else-if="col.key === 'situacion'" class="marca">
+                    <span :class="'estado-celda ' + r.semaforo">{{ r.situacion }}</span>
+                  </td>
+                  <td v-else :class="col.num ? 'num' : undefined">{{ textoCelda(r, col) }}</td>
+                </template>
+              </tr>
+            </tbody>
+          </table>
+          <p v-else class="vacio">No hay registros en este grupo.</p>
+        </div>
+        <p class="dialogo-nota">Una fila por tienda. Pulsa el nombre para ver la ficha y las terminales.</p>
+      </div>
+    </div>
   </section>
 
   <section v-if="tienda" class="pagina-tienda">
@@ -953,11 +1369,121 @@ a.nav-item.active { color: #ffffff; }
     </div>
 
     <div class="sum">
-      <div><span>Cobros</span><strong>{{ entero(tienda.cobros) }}</strong></div>
-      <div><span>Monto</span><strong>{{ dinero(tienda.monto) }}</strong></div>
-      <div><span>Ticket</span><strong>{{ dinero(tienda.ticket) }}</strong></div>
-      <div><span>Terminales</span><strong>{{ entero(tienda.terminales) }}</strong></div>
-      <div><span>Procesador</span><strong>{{ textoProcesadores(tienda) || '—' }}</strong></div>
+      <button type="button" class="ficha-card" @click="abrirFicha('cobros')">
+        <span>Cobros</span><strong>{{ entero(tienda.cobros) }}</strong><em>Ver registros</em>
+      </button>
+      <button type="button" class="ficha-card" @click="abrirFicha('monto')">
+        <span>Monto</span><strong>{{ dinero(tienda.monto) }}</strong><em>Ver registros</em>
+      </button>
+      <button type="button" class="ficha-card" @click="abrirFicha('ticket')">
+        <span>Ticket</span><strong>{{ dinero(tienda.ticket) }}</strong><em>Ver registros</em>
+      </button>
+      <button type="button" class="ficha-card" @click="abrirFicha('bac')">
+        <span>BAC</span><strong>{{ entero(tienda.bac) }}</strong><em>Ver registros</em>
+      </button>
+      <button type="button" class="ficha-card" @click="abrirFicha('neonet')">
+        <span>NEONET</span><strong>{{ entero(tienda.neonet) }}</strong><em>Ver registros</em>
+      </button>
+      <button type="button" class="ficha-card" @click="abrirFicha('terminales')">
+        <span>Terminales</span><strong>{{ entero(tienda.terminales) }}</strong><em>Ver registros</em>
+      </button>
+    </div>
+
+    <section class="resumen">
+      <div class="resumen-head">
+        <h2>Resumen de {{ tienda.nombre }}</h2>
+        <p>Una fila por terminal. Verde si está activa y rojo si está inactiva. El grupo sale de terminalPagoPOSId; si viene vacío, se arma con el posId de los cobros.</p>
+      </div>
+      <div class="resumen-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Terminal</th>
+              <th>Procesador</th>
+              <th>Estado</th>
+              <th>Último cobro</th>
+              <th class="num">Monto</th>
+              <th>Primer cobro</th>
+              <th>Último uso del pinpad</th>
+              <th class="num">Ticket</th>
+              <th>Situación</th>
+              <th>Código</th>
+              <th>Id bodega</th>
+              <th>Sede SAP</th>
+              <th class="num">Activas</th>
+              <th class="num">Inactivas</th>
+              <th class="num">CASH</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(t, i) in terminalesFilas(tienda)" :key="t.procesador + '-' + t.id + '-' + i">
+              <td>{{ t.id }}</td>
+              <td>{{ t.procesador }}</td>
+              <td>
+                <span v-if="t.activo === true" class="pid activo">Activa</span>
+                <span v-else-if="t.activo === false" class="pid inactivo">Inactiva</span>
+                <span v-else>—</span>
+              </td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="verde">{{ ultimoTexto(tienda) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="num verde">{{ dinero(tienda.monto) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ primerTexto(tienda) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ tienda.ultima ? textoDias(tienda.dias) : 'Sin cobros en pinpad' }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="num">{{ dinero(tienda.ticket) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ tienda.situacion }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ tienda.whCode || '—' }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ tienda.warehouseIds.join(', ') || '—' }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length">{{ tienda.sedes.join(', ') || '—' }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="num">{{ entero(tienda.activos) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="num">{{ entero(tienda.inactivos) }}</td>
+              <td v-if="i === 0" :rowspan="terminalesFilas(tienda).length" class="num">{{ entero(tienda.cash) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div v-if="fichaVentana" class="velo" @click.self="cerrarFicha">
+      <div class="dialogo" role="dialog" aria-modal="true" :aria-label="fichaVentana.titulo">
+        <div class="dialogo-head">
+          <div>
+            <h2>{{ fichaVentana.titulo }}</h2>
+            <p>{{ fichaVentana.nota }}</p>
+          </div>
+          <button type="button" class="cerrar" @click="cerrarFicha">Cerrar</button>
+        </div>
+        <div class="dialogo-cuerpo">
+          <div v-if="fichaVentana.terminales" class="term-tabla anidada">
+            <div v-for="bloque in bloquesDe(tienda)" :key="'v-' + bloque.id" :class="'term-col ' + (bloque.extra ? 'extra' : '')">
+              <header><span>{{ bloque.titulo }}</span><b>{{ entero(bloque.items.length) }}</b></header>
+              <div class="term-lista">
+                <span v-for="t in bloque.items" :key="'v-' + bloque.id + '-' + t.id" :class="'pid ' + (t.activo ? 'activo' : 'inactivo')">{{ t.id }}</span>
+                <p v-if="!bloque.items.length" class="term-vacio">Sin terminales</p>
+              </div>
+            </div>
+          </div>
+          <table v-else-if="fichaVentana.filas.length" class="tabla-cobros">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th class="num">Monto</th>
+                <th>Terminal</th>
+                <th>Procesador</th>
+                <th>Condición de pago</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(c, i) in fichaVentana.filas" :key="c.fecha + '-' + c.terminal + '-' + i">
+                <td>{{ textoFecha(c.fecha) }}</td>
+                <td class="num">{{ dinero(c.monto) }}</td>
+                <td>{{ c.terminal }}</td>
+                <td>{{ c.procesador }}</td>
+                <td class="condicion">{{ c.condicion || '—' }}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p v-else class="vacio">No hay registros en este grupo.</p>
+        </div>
+      </div>
     </div>
 
     <section class="picos">
@@ -990,7 +1516,7 @@ a.nav-item.active { color: #ffffff; }
           </g>
         </svg>
       </div>
-      <p v-if="figura && figura.puntos.length > 14" class="picos-meta">Desliza a la derecha para ver cada {{ tienda.picosPor === 'hora' ? 'hora' : 'día' }} con su número de cobros.</p>
+      <p v-if="figura && figura.puntos.length > 14" class="picos-meta">Desliza a la derecha para ver cada {{ tienda.picosPor === 'hora' ? 'hora' : 'día' }} con sus cobros, el ticket y la condición de pago más usada.</p>
       <div v-if="picosConCobro.length" class="picos-tabla-wrap">
         <table>
           <thead>
@@ -998,6 +1524,12 @@ a.nav-item.active { color: #ffffff; }
               <th>{{ tienda.picosPor === 'hora' ? 'Hora' : 'Día' }}</th>
               <th class="num">Cobros</th>
               <th class="num">Monto</th>
+              <th class="num">Ticket</th>
+              <th class="num">BAC</th>
+              <th class="num">NEONET</th>
+              <th class="num">CASH</th>
+              <th>Condición más usada</th>
+              <th class="num">Parte</th>
             </tr>
           </thead>
           <tbody>
@@ -1005,24 +1537,18 @@ a.nav-item.active { color: #ffffff; }
               <td>{{ p.etiqueta }} <span v-if="p.esPico" class="pico-tag">Pico</span></td>
               <td class="num">{{ entero(p.cobros) }}</td>
               <td class="num">{{ dinero(p.monto) }}</td>
+              <td class="num">{{ p.cobros ? dinero(p.monto / p.cobros) : '—' }}</td>
+              <td class="num">{{ entero(p.bac || 0) }}</td>
+              <td class="num">{{ entero(p.neonet || 0) }}</td>
+              <td class="num">{{ entero(p.cash || 0) }}</td>
+              <td>{{ p.condicion || '—' }}<span v-if="p.condicionN" class="pico-sub"> · {{ entero(p.condicionN) }}</span></td>
+              <td class="num">{{ parteDe(p) }}</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <div class="ficha">
-      <dl>
-        <template v-for="par in fichaPares(tienda)" :key="par[0]">
-          <dt>{{ par[0] }}</dt>
-          <dd>{{ par[1] }}</dd>
-        </template>
-      </dl>
-      <div>
-        <span class="terms-label">{{ tienda.pinpads.length ? 'Terminales' : 'Sin id de terminal en la condición' }}</span>
-        <span class="pid" v-for="id in tienda.pinpads" :key="id">{{ id }}</span>
-      </div>
-    </div>
   </section>
 
   <p class="footnote">Entran todos los puntos de venta que tienen idPinPad en condiciones. El cobro solo cuenta si isPinpad viene en verdadero. Verde gana sobre naranja y rojo.</p>
@@ -1195,6 +1721,47 @@ function etiquetaDia(iso) {
   return Number(bits[2]) + " " + MESES[Number(bits[1]) - 1];
 }
 
+function cuboVacio() {
+  return { cobros: 0, monto: 0, bac: 0, neonet: 0, cash: 0, condiciones: new Map() };
+}
+
+function sumarCubo(acc, v) {
+  acc.cobros += v.cobros || 0;
+  acc.monto += v.monto || 0;
+  acc.bac += v.bac || 0;
+  acc.neonet += v.neonet || 0;
+  acc.cash += v.cash || 0;
+  if (v.condiciones) {
+    for (const [k, n] of v.condiciones) acc.condiciones.set(k, (acc.condiciones.get(k) || 0) + n);
+  }
+  return acc;
+}
+
+function condicionTop(mapa) {
+  let nombre = "";
+  let n = 0;
+  if (mapa) {
+    for (const [k, v] of mapa) {
+      if (v > n) { n = v; nombre = k; }
+    }
+  }
+  return { condicion: nombre || "—", condicionN: n };
+}
+
+function puntoPico(etiqueta, v) {
+  const top = condicionTop(v && v.condiciones);
+  return {
+    etiqueta,
+    cobros: (v && v.cobros) || 0,
+    monto: Math.round(((v && v.monto) || 0) * 100) / 100,
+    bac: (v && v.bac) || 0,
+    neonet: (v && v.neonet) || 0,
+    cash: (v && v.cash) || 0,
+    condicion: top.condicion,
+    condicionN: top.condicionN,
+  };
+}
+
 function armarPicos(horas) {
   if (!horas || !horas.size) return { puntos: [], por: "" };
   const keys = [...horas.keys()].sort();
@@ -1210,50 +1777,69 @@ function armarPicos(horas) {
     const puntos = [];
     for (let h = h0; h <= h1; h++) {
       const k = dia + " " + String(h).padStart(2, "0");
-      const v = horas.get(k) || { cobros: 0, monto: 0 };
-      puntos.push({
-        etiqueta: String(h).padStart(2, "0") + ":00",
-        cobros: v.cobros,
-        monto: Math.round(v.monto * 100) / 100,
-      });
+      puntos.push(puntoPico(String(h).padStart(2, "0") + ":00", horas.get(k) || cuboVacio()));
     }
     return { puntos, por: "hora" };
   }
   const porDia = new Map();
   for (const [k, v] of horas) {
     const d = k.slice(0, 10);
-    const acc = porDia.get(d) || { cobros: 0, monto: 0 };
-    acc.cobros += v.cobros;
-    acc.monto += v.monto;
-    porDia.set(d, acc);
+    let acc = porDia.get(d);
+    if (!acc) {
+      acc = cuboVacio();
+      porDia.set(d, acc);
+    }
+    sumarCubo(acc, v);
   }
   const inicio = new Date(keys[0].slice(0, 10) + "T00:00:00");
   const fin = new Date(keys[keys.length - 1].slice(0, 10) + "T00:00:00");
   const span = Math.round((fin - inicio) / 86400000) + 1;
   const puntos = [];
   if (span > 120) {
-    for (const iso of [...porDia.keys()].sort()) {
-      const v = porDia.get(iso);
-      puntos.push({
-        etiqueta: etiquetaDia(iso),
-        cobros: v.cobros,
-        monto: Math.round(v.monto * 100) / 100,
-      });
-    }
+    for (const iso of [...porDia.keys()].sort()) puntos.push(puntoPico(etiquetaDia(iso), porDia.get(iso)));
     return { puntos, por: "día" };
   }
   const cursor = new Date(inicio);
   while (cursor <= fin && puntos.length < 130) {
     const iso = isoDia(cursor);
-    const v = porDia.get(iso) || { cobros: 0, monto: 0 };
-    puntos.push({
-      etiqueta: etiquetaDia(iso),
-      cobros: v.cobros,
-      monto: Math.round(v.monto * 100) / 100,
-    });
+    puntos.push(puntoPico(etiquetaDia(iso), porDia.get(iso) || cuboVacio()));
     cursor.setDate(cursor.getDate() + 1);
   }
   return { puntos, por: "día" };
+}
+
+function tipoTerminal(valor) {
+  if (valor == null || valor === "") return null;
+  const n = Number(valor);
+  if (n === 1) return "bac";
+  if (n === 0) return "cash";
+  if (n === 2) return "neonet";
+  const t = String(valor).trim().toUpperCase();
+  if (t === "BAC") return "bac";
+  if (t === "CASH") return "cash";
+  if (t === "NEONET") return "neonet";
+  return null;
+}
+
+function tomarPin(s, id, condicion) {
+  let meta = s.pinpads.get(id);
+  if (!meta) {
+    meta = { bac: 0, cash: 0, neonet: 0, tipo: null, activo: false };
+    s.pinpads.set(id, meta);
+  }
+  if (condicion) {
+    if (condicion.activo === true) meta.activo = true;
+    const tipo = tipoTerminal(condicion.terminalPagoPOSId);
+    if (tipo) meta.tipo = tipo;
+  }
+  return meta;
+}
+
+function nombreProcesador(pos) {
+  if (pos === 1) return "BAC";
+  if (pos === 0) return "CASH";
+  if (pos === 2) return "NEONET";
+  return "Otro";
 }
 
 function cruzar(pagos, condiciones, tiendas, hoy) {
@@ -1290,7 +1876,8 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
         bac: 0,
         cash: 0,
         neonet: 0,
-        pinpads: new Set(),
+        pinpads: new Map(),
+        cobrosLista: [],
         horas: new Map(),
         primera: "",
         ultima: "",
@@ -1298,7 +1885,7 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       };
       stores.set(c.whCode, s);
     }
-    s.pinpads.add(String(c.idPinPad).trim());
+    tomarPin(s, String(c.idPinPad).trim(), c);
     if (c.activo === true) s.activos++;
     else s.inactivos++;
   }
@@ -1319,7 +1906,22 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
     if (pos === 1) s.bac++;
     else if (pos === 0) s.cash++;
     else if (pos === 2) s.neonet++;
-    if (tienePinpad(c)) s.pinpads.add(String(c.idPinPad).trim());
+    const terminal = tienePinpad(c) ? String(c.idPinPad).trim() : "";
+    const nombreCond = c && c.nombre ? String(c.nombre).trim() : "";
+    if (terminal) {
+      const meta = tomarPin(s, terminal, c);
+      if (pos === 1) meta.bac++;
+      else if (pos === 0) meta.cash++;
+      else if (pos === 2) meta.neonet++;
+    }
+    s.cobrosLista.push({
+      fecha: p.createdAt || "",
+      monto: Math.round((Number(p.monto) || 0) * 100) / 100,
+      posId: pos,
+      procesador: nombreProcesador(pos),
+      terminal: terminal || "—",
+      condicion: nombreCond || "—",
+    });
     if (p.createdAt) {
       if (!s.primera || p.createdAt < s.primera) s.primera = p.createdAt;
       if (!s.ultima || p.createdAt > s.ultima) s.ultima = p.createdAt;
@@ -1327,11 +1929,15 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       if (claveHora) {
         let b = s.horas.get(claveHora);
         if (!b) {
-          b = { cobros: 0, monto: 0 };
+          b = cuboVacio();
           s.horas.set(claveHora, b);
         }
         b.cobros++;
         b.monto += Number(p.monto) || 0;
+        if (pos === 1) b.bac++;
+        else if (pos === 0) b.cash++;
+        else if (pos === 2) b.neonet++;
+        if (nombreCond) b.condiciones.set(nombreCond, (b.condiciones.get(nombreCond) || 0) + 1);
       }
     }
   }
@@ -1351,7 +1957,8 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       bac: 0,
       cash: 0,
       neonet: 0,
-      pinpads: new Set(),
+      pinpads: new Map(),
+      cobrosLista: [],
       horas: new Map(),
       primera: "",
       ultima: "",
@@ -1375,7 +1982,8 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       bac: 0,
       cash: 0,
       neonet: 0,
-      pinpads: new Set(),
+      pinpads: new Map(),
+      cobrosLista: [],
       horas: new Map(),
       primera: "",
       ultima: "",
@@ -1384,7 +1992,23 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
   }
 
   const rows = [...stores.values()].map((s) => {
-    const pinpads = [...s.pinpads].sort();
+    const pinpads = [...s.pinpads.keys()].sort();
+    const terminalesBac = [];
+    const terminalesNeonet = [];
+    const terminalesCash = [];
+    const terminalesOtras = [];
+    for (const id of pinpads) {
+      const meta = s.pinpads.get(id);
+      const item = { id, activo: !!meta.activo };
+      if (meta.tipo === "bac") terminalesBac.push(item);
+      else if (meta.tipo === "neonet") terminalesNeonet.push(item);
+      else if (meta.tipo === "cash") terminalesCash.push(item);
+      else if (meta.bac || meta.neonet || meta.cash) {
+        if (meta.bac) terminalesBac.push(item);
+        if (meta.neonet) terminalesNeonet.push(item);
+        if (meta.cash) terminalesCash.push(item);
+      } else terminalesOtras.push(item);
+    }
     const monto = Math.round(s.monto * 100) / 100;
     const serie = armarPicos(s.horas);
     const dias = s.ultima ? diasDesde(s.ultima, hoy) : null;
@@ -1412,6 +2036,11 @@ function cruzar(pagos, condiciones, tiendas, hoy) {
       ticket: s.cobros ? monto / s.cobros : 0,
       pinpads,
       terminales: pinpads.length,
+      terminalesBac,
+      terminalesNeonet,
+      terminalesCash,
+      terminalesOtras,
+      cobrosLista: s.cobrosLista,
       primera: s.primera,
       ultima: s.ultima,
       dias,
@@ -1599,23 +2228,25 @@ function libro(rows, hoyTxt) {
   };
 })();
 
-const FILTROS = [
-  ["todas", "Todos"],
-  ["sin", "Bopis sin pinpad"],
-  ["verde", "Ya cobraron"],
-  ["naranja", "Configurados"],
-  ["rojo", "Sin cobros ni pinpads activos"],
-];
-
 const COLUMNAS = [
   { key: "nombre", label: "Tienda" },
   { key: "whCode", label: "Código" },
   { key: "cobros", label: "Cobros", num: true },
-  { key: "ultima", label: "Último cobro" },
-  { key: "monto", label: "Monto", num: true },
   { key: "terminales", label: "Terminales", num: true },
   { key: "procesadores", label: "Procesador" },
   { key: "situacionRank", label: "Situación" },
+];
+
+const COLUMNAS_DETALLE = [
+  { key: "nombre", label: "Tienda" },
+  { key: "whCode", label: "Código" },
+  { key: "situacion", label: "Situación" },
+  { key: "cobros", label: "Cobros", num: true },
+  { key: "monto", label: "Monto", num: true, money: true },
+  { key: "bac", label: "BAC", num: true },
+  { key: "neonet", label: "NEONET", num: true },
+  { key: "terminales", label: "Terminales", num: true },
+  { key: "ultima", label: "Último cobro", cuando: true },
 ];
 
 const ETIQUETA = { pagos: "Pagos", condiciones: "Condiciones", tiendas: "Tiendas" };
@@ -1633,17 +2264,19 @@ const CorteModulo = {
   template: "#corte-template",
     data() {
       return {
-        filtros: FILTROS,
         columnas: COLUMNAS,
+        columnasDetalle: COLUMNAS_DETALLE,
         slots: { pagos: null, condiciones: null, tiendas: null },
         corte: null,
         espera: "El corte aparece cuando los tres archivos están puestos.",
         sobre: false,
         query: "",
-        filtro: "todas",
         sortKey: "cobros",
         sortDir: "desc",
         sel: null,
+        detalleId: null,
+        filaTerm: null,
+        fichaId: null,
         fecha: hoyTexto(),
       };
     },
@@ -1651,7 +2284,7 @@ const CorteModulo = {
       filas() {
         return this.corte ? Corte.vista(this.corte.rows, {
           query: this.query,
-          filtro: this.filtro,
+          filtro: "todas",
           sortKey: this.sortKey,
           sortDir: this.sortDir,
         }) : [];
@@ -1678,13 +2311,43 @@ const CorteModulo = {
           rojo: contar(this.corte.rows, "rojo"),
           sin: contar(this.corte.rows, "sin"),
           monto: this.corte.rows.reduce((s, r) => s + r.monto, 0),
+          pinpad: this.corte.pinpad,
+          bac: this.corte.rows.reduce((s, r) => s + r.bac, 0),
+          cash: this.corte.rows.reduce((s, r) => s + r.cash, 0),
+          neonet: this.corte.rows.reduce((s, r) => s + r.neonet, 0),
         };
+      },
+      cardsCorte() {
+        if (!this.conteos) return [];
+        return [
+          { id: "todas", tono: "todas", titulo: "Bopis", valor: Corte.entero(this.conteos.todas), nota: "Todos los puntos del cruce" },
+          { id: "monto", tono: "monto", titulo: "Monto pinpad", valor: Corte.dinero(this.conteos.monto), nota: "Suma de los cobros con terminal" },
+          { id: "verde", tono: "verde", titulo: "Ya cobraron", valor: Corte.entero(this.conteos.verde), nota: "Bopis con cobro en pinpad" },
+          { id: "naranja", tono: "naranja", titulo: "Configurados", valor: Corte.entero(this.conteos.naranja), nota: "Pinpad activo, todavía sin cobro" },
+          { id: "rojo", tono: "rojo", titulo: "Solo están", valor: Corte.entero(this.conteos.rojo), nota: "Pinpad dado de alta, sin condición activa" },
+          { id: "sin", tono: "sin", titulo: "Sin pinpad", valor: Corte.entero(this.conteos.sin), nota: "Bopis sin terminal" },
+        ];
+      },
+      cardsProceso() {
+        if (!this.conteos) return [];
+        return [
+          { id: "pinpad", tono: "pinpad", titulo: "Cobros con pinpad", valor: Corte.entero(this.conteos.pinpad), nota: "isPinpad en verdadero" },
+          { id: "bac", tono: "bac", titulo: "BAC", valor: Corte.entero(this.conteos.bac), nota: "posId 1" },
+          { id: "cash", tono: "cash", titulo: "CASH", valor: Corte.entero(this.conteos.cash), nota: "posId 0" },
+          { id: "neonet", tono: "neonet", titulo: "NEONET", valor: Corte.entero(this.conteos.neonet), nota: "posId 2" },
+        ];
+      },
+      detalle() {
+        if (!this.detalleId || !this.corte) return null;
+        const card = this.cardsCorte.concat(this.cardsProceso).find((c) => c.id === this.detalleId);
+        if (!card) return null;
+        return { ...card, filas: this.filasDetalle(this.detalleId) };
       },
       notas() {
         const lista = [];
-        if (this.corte?.sinCondicion) lista.push(Corte.entero(this.corte.sinCondicion) + " cobros con pinpad no tenían condición de pago.");
-        if (this.corte?.sinTienda) lista.push(Corte.entero(this.corte.sinTienda) + " cobros con pinpad no caen en un punto con idPinPad.");
-        if (this.corte?.sinWh) lista.push(Corte.entero(this.corte.sinWh) + " condiciones con pinpad no traen código de tienda.");
+        if (this.corte?.sinCondicion) lista.push(this.frase(this.corte.sinCondicion, "cobro con pinpad no tenía condición de pago.", "cobros con pinpad no tenían condición de pago."));
+        if (this.corte?.sinTienda) lista.push(this.frase(this.corte.sinTienda, "cobro con pinpad no cae en un punto con idPinPad.", "cobros con pinpad no caen en un punto con idPinPad."));
+        if (this.corte?.sinWh) lista.push(this.frase(this.corte.sinWh, "condición con pinpad no trae código de tienda.", "condiciones con pinpad no traen código de tienda."));
         return lista;
       },
       tienda() {
@@ -1693,10 +2356,9 @@ const CorteModulo = {
       },
       leyendaPicos() {
         const r = this.tienda;
-        if (!r || !(r.picos || []).some((p) => p.cobros > 0)) return "Sin cobros con pinpad.";
-        if (r.picosPor === "hora") {
-
-        }
+        if (!r || !(r.picos || []).some((p) => p.cobros > 0)) return "Esta localidad no tiene cobros con pinpad en el archivo.";
+        const corte = r.picosPor === "hora" ? "Cada barra es una hora." : "Cada barra es un día.";
+        return corte + " La barra oscura es el pico, el momento con más cobros. La tabla trae el ticket, BAC, NEONET, CASH y la condición de pago más usada, por ejemplo 12 cuotas.";
       },
       textoPico() {
         const top = this.picosConCobro.filter((p) => p.esPico);
@@ -1705,7 +2367,11 @@ const CorteModulo = {
         const cuando = top.slice(0, 4).map((p) => p.etiqueta).join(", ");
         const extra = top.length > 4 ? "…" : "";
         let frase = "Pico en " + cuando + extra + ": " + Corte.entero(max) + (max === 1 ? " cobro" : " cobros");
-        if (top.length === 1) frase += ", " + Corte.dinero(top[0].monto);
+        if (top.length === 1) {
+          frase += ", " + Corte.dinero(top[0].monto);
+          if (top[0].cobros) frase += " · ticket " + Corte.dinero(top[0].monto / top[0].cobros);
+          if (top[0].condicion && top[0].condicion !== "—") frase += " · " + top[0].condicion;
+        }
         return frase + ".";
       },
       picosConCobro() {
@@ -1725,19 +2391,53 @@ const CorteModulo = {
         }
         return Corte.entero(this.filas.length) + " de " + Corte.entero(this.corte.rows.length);
       },
+      fichaVentana() {
+        if (!this.fichaId || !this.tienda) return null;
+        const lista = this.cobrosDe(this.tienda, this.fichaId);
+        const titulos = {
+          cobros: ["Cobros", Corte.entero(lista.length) + " cobros con pinpad. Condición de pago es el nombre del JSON, por ejemplo 12 CUOTAS."],
+          monto: ["Monto", "Suma " + Corte.dinero(this.tienda.monto) + ". Cada fila trae la condición de pago."],
+          ticket: ["Ticket", "Promedio " + Corte.dinero(this.tienda.ticket) + ". Cada fila trae la condición de pago."],
+          bac: ["BAC", Corte.entero(lista.length) + " cobros con posId 1. Condición de pago es el nombre del JSON."],
+          neonet: ["NEONET", Corte.entero(lista.length) + " cobros con posId 2. Condición de pago es el nombre del JSON."],
+          terminales: ["Terminales", Corte.entero(this.tienda.terminales) + " terminales"],
+        };
+        const par = titulos[this.fichaId];
+        if (!par) return null;
+        return {
+          titulo: par[0],
+          nota: par[1],
+          filas: lista,
+          terminales: this.fichaId === "terminales",
+        };
+      },
     },
     mounted() {
       this._bloquear = (e) => e.preventDefault();
+      this._tecla = (e) => {
+        if (e.key !== "Escape") return;
+        if (this.fichaId) this.cerrarFicha();
+        else if (this.detalleId) this.cerrarDetalle();
+      };
       window.addEventListener("dragover", this._bloquear);
       window.addEventListener("drop", this._bloquear);
+      window.addEventListener("keydown", this._tecla);
     },
     unmounted() {
       window.removeEventListener("dragover", this._bloquear);
       window.removeEventListener("drop", this._bloquear);
+      window.removeEventListener("keydown", this._tecla);
     },
     methods: {
       dinero: Corte.dinero,
       entero: Corte.entero,
+      textoDias: Corte.textoDias,
+      parteDe(p) {
+        const total = this.tienda && this.tienda.cobros;
+        if (!total || !p || !p.cobros) return "—";
+        const n = Math.round((p.cobros / total) * 1000) / 10;
+        return n.toLocaleString("es-GT") + "%";
+      },
       textoProcesadores: Corte.textoProcesadores,
       async recibir(fileList) {
         const alarmas = [];
@@ -1773,6 +2473,9 @@ const CorteModulo = {
         if (next.pagos && next.condiciones && next.tiendas) {
           this.corte = Corte.cruzar(next.pagos.rows, next.condiciones.rows, next.tiendas.rows, Corte.hoyLocal());
           this.sel = null;
+          this.detalleId = null;
+          this.filaTerm = null;
+          this.fichaId = null;
           this.espera = "";
         } else {
           const faltan = ["pagos", "condiciones", "tiendas"].filter((k) => !next[k]);
@@ -1793,14 +2496,11 @@ const CorteModulo = {
         this.slots = { pagos: null, condiciones: null, tiendas: null };
         this.corte = null;
         this.sel = null;
+        this.detalleId = null;
+        this.filaTerm = null;
+        this.fichaId = null;
         this.espera = "El corte aparece cuando los tres archivos están puestos.";
         if (this.$refs.archivo) this.$refs.archivo.value = "";
-      },
-      limpiarFiltros() {
-        this.query = "";
-        this.filtro = "todas";
-        this.sortKey = "cobros";
-        this.sortDir = "desc";
       },
       ordenar(key) {
         if (this.sortKey === key) this.sortDir = this.sortDir === "asc" ? "desc" : "asc";
@@ -1809,12 +2509,70 @@ const CorteModulo = {
           this.sortDir = key === "nombre" || key === "whCode" ? "asc" : "desc";
         }
       },
+      frase(n, uno, muchos) {
+        return Corte.entero(n) + " " + (n === 1 ? uno : muchos);
+      },
+      bajarExcel(rows, grupo) {
+        if (!rows.length) return;
+        const marca = grupo ? this.fecha + " · " + grupo : this.fecha;
+        const slug = grupo
+          ? "-" + grupo.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+          : "";
+        descargarBlob(Corte.libro(rows, marca), "corte-pinpad" + slug + "-" + Corte.hoyLocal() + ".xlsx");
+      },
       excel() {
-        if (!this.filas.length) return;
-        descargarBlob(Corte.libro(this.filas, this.fecha), "corte-pinpad-" + Corte.hoyLocal() + ".xlsx");
+        this.bajarExcel(this.filas, "");
+      },
+      excelDetalle() {
+        if (!this.detalle) return;
+        this.bajarExcel(this.detalle.filas, this.detalle.titulo);
       },
       clave(r) {
         return [r.whCode, r.nombre, (r.warehouseIds || []).join(",")].join("\t");
+      },
+      bloquesDe(r) {
+        if (!r) return [];
+        const fijos = [
+          { id: "bac", titulo: "BAC", items: r.terminalesBac || [] },
+          { id: "neonet", titulo: "NEONET", items: r.terminalesNeonet || [] },
+        ];
+        const extras = [
+          { id: "cash", titulo: "CASH", items: r.terminalesCash || [], extra: true },
+          { id: "otras", titulo: "Sin tipo", items: r.terminalesOtras || [], extra: true },
+        ].filter((b) => b.items.length);
+        return fijos.concat(extras);
+      },
+      terminalesFilas(r) {
+        const filas = [];
+        for (const bloque of this.bloquesDe(r)) {
+          for (const t of bloque.items) filas.push({ id: t.id, procesador: bloque.titulo, activo: !!t.activo });
+        }
+        return filas.length ? filas : [{ id: "—", procesador: "—", activo: null }];
+      },
+      toggleTerminales(r) {
+        const clave = this.clave(r);
+        this.filaTerm = this.filaTerm === clave ? null : clave;
+      },
+      terminalesAbiertas(r) {
+        return this.filaTerm === this.clave(r);
+      },
+      cobrosDe(r, id) {
+        const lista = (r && r.cobrosLista) || [];
+        const filtro = id === "bac" ? 1 : id === "neonet" ? 2 : null;
+        const salida = filtro == null ? lista.slice() : lista.filter((c) => c.posId === filtro);
+        salida.sort((a, b) => String(b.fecha).localeCompare(String(a.fecha)));
+        return salida;
+      },
+      abrirFicha(id) {
+        this.fichaId = id;
+      },
+      cerrarFicha() {
+        this.fichaId = null;
+      },
+      textoFecha(iso) {
+        if (!iso) return "—";
+        const f = Corte.fechaParte(iso);
+        return f.fecha + (f.hora ? " " + f.hora : "");
       },
       abrir(r) {
         this.sel = this.clave(r);
@@ -1823,8 +2581,57 @@ const CorteModulo = {
           if (main) main.scrollTop = 0;
         });
       },
+      filasDetalle(id) {
+        const rows = this.corte ? this.corte.rows : [];
+        const match = {
+          todas: () => true,
+          monto: (r) => r.monto > 0,
+          verde: (r) => r.semaforo === "verde",
+          naranja: (r) => r.semaforo === "naranja",
+          rojo: (r) => r.semaforo === "rojo",
+          sin: (r) => r.semaforo === "sin",
+          pinpad: (r) => r.cobros > 0,
+          bac: (r) => r.bac > 0,
+          cash: (r) => r.cash > 0,
+          neonet: (r) => r.neonet > 0,
+        }[id];
+        const lista = match ? rows.filter(match) : [];
+        lista.sort((a, b) => b.cobros - a.cobros || b.monto - a.monto || String(a.nombre).localeCompare(String(b.nombre), "es"));
+        return lista;
+      },
+      abrirDetalle(id) {
+        this.detalleId = id;
+      },
+      cerrarDetalle() {
+        this.detalleId = null;
+      },
+      abrirDesdeDetalle(r) {
+        this.detalleId = null;
+        this.abrir(r);
+      },
+      textoCelda(r, col) {
+        if (col.money) return Corte.dinero(r[col.key]);
+        if (col.cuando) {
+          if (!r[col.key]) return "—";
+          const f = Corte.fechaParte(r[col.key]);
+          return f.fecha + (f.hora ? " " + f.hora : "");
+        }
+        if (col.dias) {
+          if (r.dias == null || r.dias > 9000) return "—";
+          return Corte.textoDias(r.dias);
+        }
+        if (col.lista) {
+          const lista = r[col.key];
+          return Array.isArray(lista) && lista.length ? lista.join(", ") : "—";
+        }
+        if (col.bool) return r[col.key] ? "Sí" : "No";
+        if (col.num) return Corte.entero(r[col.key]);
+        const valor = r[col.key];
+        return valor === 0 || valor ? valor : "—";
+      },
       cerrarTienda() {
         this.sel = null;
+        this.fichaId = null;
         this.$nextTick(() => {
           const main = this.$el && this.$el.closest(".main-content");
           if (main) main.scrollTop = 0;
@@ -1889,15 +2696,10 @@ const CorteModulo = {
         const f = Corte.fechaParte(r.ultima);
         return f.fecha + (f.hora ? " " + f.hora : "");
       },
-      fichaPares(r) {
-        const parte = Corte.fechaParte(r.primera);
-        return [
-          ["Primer cobro", parte.fecha + (parte.hora ? " · " + parte.hora : "")],
-          ["Ticket promedio", Corte.dinero(r.ticket)],
-          ["Silencio", Corte.textoDias(r.dias)],
-          ["Id bodega", r.warehouseIds.join(", ") || "—"],
-          ["Sede SAP", r.sedes.join(", ") || "—"],
-        ];
+      primerTexto(r) {
+        if (!r || !r.primera) return "—";
+        const f = Corte.fechaParte(r.primera);
+        return f.fecha + (f.hora ? " " + f.hora : "");
       },
       flecha(col) {
         if (this.sortKey !== col.key) return "";
