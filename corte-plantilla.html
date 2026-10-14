@@ -697,7 +697,19 @@ tr.click:hover { background: #dcedf1; }
 .corte-pinpad .muestra { width: 12px; height: 12px; border-radius: 2px; }
 .corte-pinpad .muestra.clara { background: #8fd0aa; }
 .corte-pinpad .muestra.oscura { background: #146c43; }
-.corte-pinpad .picos svg { width: 100%; height: auto; display: block; }
+.corte-pinpad .picos-scroll {
+  overflow-x: auto;
+  margin-top: 4px;
+  padding-bottom: 6px;
+}
+
+.corte-pinpad .picos svg {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+}
+
 .corte-pinpad .picos text { font-family: system-ui, sans-serif; }
 
 .corte-pinpad .picos-tabla-wrap {
@@ -956,24 +968,29 @@ a.nav-item.active { color: #ffffff; }
         <span><i class="muestra clara"></i> Cobros</span>
         <span><i class="muestra oscura"></i> Pico, el más alto</span>
       </p>
-      <svg v-if="figura" :viewBox="figura.view" role="img" :aria-label="textoPico">
-        <line :x1="figura.x0" :y1="figura.baseY" :x2="figura.x1" :y2="figura.baseY" stroke="#d5dbe3" />
-        <g v-for="(p, i) in figura.puntos" :key="i">
-          <rect
-            v-if="p.h > 0"
-            :x="p.x"
-            :y="p.y"
-            :width="p.w"
-            :height="p.h"
-            :fill="p.esPico ? '#146c43' : '#8fd0aa'"
-            rx="1"
-          >
-            <title>{{ p.etiqueta }} · {{ entero(p.cobros) }} cobros · {{ dinero(p.monto) }}</title>
-          </rect>
-          <text v-if="p.esPicoLabel" :x="p.cx" :y="p.labelY" text-anchor="middle" font-size="12" font-weight="700" fill="#146c43">{{ entero(p.cobros) }}</text>
-          <text v-if="p.mostrar" :x="p.cx" :y="figura.baseY + 16" text-anchor="middle" font-size="11" fill="#5c6570">{{ p.etiqueta }}</text>
-        </g>
-      </svg>
+      <div v-if="figura" class="picos-scroll">
+        <svg :viewBox="figura.view" :width="figura.ancho" :height="figura.alto" role="img" :aria-label="textoPico">
+          <line v-for="(g, i) in figura.guias" :key="'g' + i" :x1="figura.x0" :y1="g.y" :x2="figura.x1" :y2="g.y" stroke="#e4e9ee" />
+          <text v-for="(g, i) in figura.guias" :key="'n' + i" :x="figura.x0 - 8" :y="g.textoY" text-anchor="end" font-size="13" fill="#5c6570">{{ g.texto }}</text>
+          <line :x1="figura.x0" :y1="figura.baseY" :x2="figura.x1" :y2="figura.baseY" stroke="#c5ced6" />
+          <g v-for="(p, i) in figura.puntos" :key="i">
+            <rect
+              v-if="p.h > 0"
+              :x="p.x"
+              :y="p.y"
+              :width="p.w"
+              :height="p.h"
+              :fill="p.esPico ? '#146c43' : '#7dcea0'"
+              rx="3"
+            >
+              <title>{{ p.etiqueta }} · {{ entero(p.cobros) }} cobros · {{ dinero(p.monto) }}</title>
+            </rect>
+            <text v-if="p.cobros > 0" :x="p.cx" :y="p.labelY" text-anchor="middle" font-size="13" :font-weight="p.esPico ? 700 : 600" :fill="p.esPico ? '#146c43' : '#1a1d21'">{{ entero(p.cobros) }}</text>
+            <text :x="p.cx" :y="figura.baseY + 14" text-anchor="start" font-size="12" fill="#5c6570" :transform="'rotate(52 ' + p.cx + ' ' + (figura.baseY + 14) + ')'">{{ p.etiqueta }}</text>
+          </g>
+        </svg>
+      </div>
+      <p v-if="figura && figura.puntos.length > 14" class="picos-meta">Desliza a la derecha para ver cada {{ tienda.picosPor === 'hora' ? 'hora' : 'día' }} con su número de cobros.</p>
       <div v-if="picosConCobro.length" class="picos-tabla-wrap">
         <table>
           <thead>
@@ -1678,9 +1695,8 @@ const CorteModulo = {
         const r = this.tienda;
         if (!r || !(r.picos || []).some((p) => p.cobros > 0)) return "Sin cobros con pinpad.";
         if (r.picosPor === "hora") {
-          return "Cada barra es una hora. La altura es cuántos cobros con pinpad hubo en esa hora. La barra oscura es el pico: la hora con más cobros. Los huecos son horas sin cobro.";
+
         }
-        return "Cada barra es un día. La altura es cuántos cobros con pinpad hubo ese día. La barra oscura es el pico: el día con más cobros. Los huecos son días sin cobro.";
       },
       textoPico() {
         const top = this.picosConCobro.filter((p) => p.esPico);
@@ -1817,18 +1833,18 @@ const CorteModulo = {
       figuraPicos(r) {
         const pts = (r && r.picos) || [];
         if (!pts.some((p) => p.cobros > 0)) return null;
-        const W = 760;
-        const H = 228;
-        const padL = 6;
-        const padR = 6;
-        const padT = 22;
-        const padB = 34;
+        const n = pts.length;
+        const slot = n <= 6 ? 86 : n <= 14 ? 64 : 48;
+        const padL = 44;
+        const padR = 18;
+        const padT = 28;
+        const padB = 72;
+        const H = 460;
+        const W = padL + n * slot + padR;
         const baseY = H - padB;
         const innerH = baseY - padT;
         const max = Math.max(...pts.map((p) => p.cobros), 1);
-        const n = pts.length;
-        const slot = (W - padL - padR) / n;
-        const bw = Math.min(36, Math.max(2, slot * 0.72));
+        const bw = Math.max(18, slot * 0.62);
         const puntos = pts.map((p, i) => {
           const h = (p.cobros / max) * innerH;
           const x = padL + slot * i + (slot - bw) / 2;
@@ -1842,23 +1858,28 @@ const CorteModulo = {
             w: Math.round(bw * 10) / 10,
             h: Math.round(h * 10) / 10,
             cx: Math.round((x + bw / 2) * 10) / 10,
-            labelY: Math.max(12, Math.round((y - 6) * 10) / 10),
+            labelY: Math.max(16, Math.round((y - 8) * 10) / 10),
             esPico: p.cobros > 0 && p.cobros === max,
-            esPicoLabel: false,
-            mostrar: false,
           };
         });
-        const paso = Math.max(1, Math.ceil(n / 8));
-        puntos.forEach((p, i) => {
-          p.mostrar = n <= 12 || i === 0 || i === n - 1 || i % paso === 0;
+        const guia = (valor) => ({
+          y: Math.round((baseY - (valor / max) * innerH) * 10) / 10,
+          textoY: Math.round((baseY - (valor / max) * innerH) - 4),
+          texto: Corte.entero(valor),
         });
-        let ultimo = -999;
-        puntos.forEach((p) => {
-          if (!p.esPico || p.cx - ultimo < 36) return;
-          p.esPicoLabel = true;
-          ultimo = p.cx;
-        });
-        return { view: "0 0 " + W + " " + H, baseY, x0: padL, x1: W - padR, puntos };
+        const guias = [guia(max)];
+        if (max >= 4) guias.push(guia(Math.round(max / 2)));
+        guias.push({ y: baseY, textoY: baseY - 4, texto: "0" });
+        return {
+          view: "0 0 " + W + " " + H,
+          ancho: W,
+          alto: H,
+          baseY,
+          x0: padL,
+          x1: W - padR,
+          puntos,
+          guias,
+        };
       },
       cuando(iso) {
         return Corte.fechaParte(iso);
